@@ -318,6 +318,46 @@ endpoints:
       forcePrompt: false
       modelDisplayLabel: 'Portkey'
       iconURL: https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/rjqy7ghvjoiu4cd1xjbf
+
+    # A Custom Endpoint Example
+    # - name: 'CustomGPT'
+    #   apiKey: '${CUSTOM_API_KEY}'
+    #   baseURL: 'https://api.custom.com/v1'
+    #   models:
+    #     default: ['custom-model']
+    #     fetch: false
+    #   titleConvo: true
+    #   titleModel: 'custom-model'
+    #   modelDisplayLabel: 'CustomGPT'
+
+    # Intent Router Endpoint
+    - name: 'IntentRouter'
+      apiKey: 'key-here'
+      baseURL: '${INTENT_ROUTER_URL}'
+      models:
+        default: ['intent-router-ensemble']
+        fetch: false
+      titleConvo: true
+      titleModel: 'intent-router-ensemble'
+      summarize: false
+      modelDisplayLabel: 'SmartRouter'
+      dropParams: []
+      timeout: 60000
+    
+    # Custom RAG Endpoint
+    - name: 'Custom RAG Server'
+      apiKey: 'YOUR_RAG_API_KEY'
+      baseURL: '${CUSTOM_RAG_URL}'
+      models:
+        default: 
+           - 'gpt-4'
+        fetch: false
+      titleConvo: true
+      titleModel: 'gpt-4'
+      summarize: false
+      modelDisplayLabel: 'RAG Server'
+      dropParams: []
+
 # Example modelSpecs configuration showing grouping options
 # The 'group' field organizes model specs in the UI selector:
 # - If 'group' matches an endpoint name (e.g., "openAI", "groq"), the spec appears nested under that endpoint
