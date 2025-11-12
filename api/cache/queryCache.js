@@ -31,13 +31,13 @@ async function getCachedQuery(queryText, userId = '') {
   try {
     const queryCache = getLogStores('QUERY_RESULTS');
     const cacheKey = createQueryCacheKey(queryText.trim(), userId);
-    
+
     const result = await queryCache.get(cacheKey);
     if (result) {
       console.log(`Cache HIT for query: "${queryText.substring(0, 50)}..."`);
       return result;
     }
-    
+
     console.log(`Cache MISS for query: "${queryText.substring(0, 50)}..."`);
     return null;
   } catch (error) {

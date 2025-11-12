@@ -133,7 +133,7 @@ const initializeClient = async ({ req, res, endpointOption, optionsOnly, overrid
 
   // Add user query to options for cache busting
   const userQuery = req.body?.text || '';
-  
+
   let clientOptions = {
     reverseProxyUrl: baseURL ?? null,
     proxy: PROXY ?? null,

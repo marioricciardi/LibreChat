@@ -16,7 +16,7 @@ async function queryCacheMiddleware(req, res, next) {
   try {
     // Try to get cached result based on the full query text
     const cachedResult = await getCachedQuery(userQuery, userId);
-    
+
     if (cachedResult) {
       console.log(`Returning cached result for query: "${userQuery}"`);
       return res.status(200).json({
