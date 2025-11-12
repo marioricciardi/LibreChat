@@ -160,7 +160,14 @@ const fetchOpenAIModels = async (opts, _models = []) => {
 
   const modelsCache = getLogStores(CacheKeys.MODEL_QUERIES);
 
-  const cachedModels = await modelsCache.get(baseURL);
+  // Create a more specific cache key that includes query parameters if available
+  let cacheKey = baseURL;
+  if (opts.userQuery) {
+    // Use the full user query as part of the cache key for custom queries
+    cacheKey = `${baseURL}:${encodeURIComponent(opts.userQuery)}`;
+  }
+
+  const cachedModels = await modelsCache.get(cacheKey);
   if (cachedModels) {
     return cachedModels;
   }
@@ -188,7 +195,7 @@ const fetchOpenAIModels = async (opts, _models = []) => {
     models = otherModels.concat(instructModels);
   }
 
-  await modelsCache.set(baseURL, models);
+  await modelsCache.set(cacheKey, models);
   return models;
 };
 
@@ -279,7 +286,14 @@ const fetchAnthropicModels = async (opts, _models = []) => {
 
   const modelsCache = getLogStores(CacheKeys.MODEL_QUERIES);
 
-  const cachedModels = await modelsCache.get(baseURL);
+  // Create a more specific cache key that includes query parameters if available
+  let cacheKey = baseURL;
+  if (opts.userQuery) {
+    // Use the full user query as part of the cache key for custom queries
+    cacheKey = `${baseURL}:${encodeURIComponent(opts.userQuery)}`;
+  }
+
+  const cachedModels = await modelsCache.get(cacheKey);
   if (cachedModels) {
     return cachedModels;
   }
@@ -298,7 +312,7 @@ const fetchAnthropicModels = async (opts, _models = []) => {
     return _models;
   }
 
-  await modelsCache.set(baseURL, models);
+  await modelsCache.set(cacheKey, models);
   return models;
 };
 
